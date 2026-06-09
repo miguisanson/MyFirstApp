@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="tab-bar-controller">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
@@ -8,7 +8,25 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Tab Bar Controller-->
+        <scene sceneID="tab-scene">
+            <objects>
+                <tabBarController id="tab-bar-controller" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="main-tab-bar">
+                        <rect key="frame" x="0.0" y="803" width="393" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="tab-to-calculator"/>
+                        <segue destination="users-table-vc" kind="relationship" relationship="viewControllers" id="tab-to-users"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tab-first-responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-884" y="-2"/>
+        </scene>
+        <!--Calculator-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MyFirstApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -23,34 +41,34 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="button-stack">
-                                <rect key="frame" x="20" y="231" width="353" height="559"/>
+                                <rect key="frame" x="20" y="231" width="353" height="510"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="row-one">
-                                        <rect key="frame" x="0.0" y="0.0" width="353" height="102.33333333333333"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="353" height="92.333333333333329"/>
                                         <subviews>
                                             <button opaque="NO" tag="304" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-clear">
-                                                <rect key="frame" x="0.0" y="0.0" width="79.333333333333329" height="102.33333333333333"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="79.333333333333329" height="92.333333333333329"/>
                                                 <state key="normal" title="DEL"/>
                                                 <connections>
                                                     <action selector="deleteButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-top-delete"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="300" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-sign">
-                                                <rect key="frame" x="91.333333333333343" y="0.0" width="79.333333333333343" height="102.33333333333333"/>
+                                                <rect key="frame" x="91.333333333333343" y="0.0" width="79.333333333333343" height="92.333333333333329"/>
                                                 <state key="normal" title="AC"/>
                                                 <connections>
                                                     <action selector="clearButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-top-clear"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="302" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-percent">
-                                                <rect key="frame" x="182.66666666666666" y="0.0" width="78.999999999999972" height="102.33333333333333"/>
+                                                <rect key="frame" x="182.66666666666666" y="0.0" width="78.999999999999972" height="92.333333333333329"/>
                                                 <state key="normal" title="%"/>
                                                 <connections>
                                                     <action selector="percentButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-percent"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-divide">
-                                                <rect key="frame" x="273.66666666666669" y="0.0" width="79.333333333333314" height="102.33333333333333"/>
+                                                <rect key="frame" x="273.66666666666669" y="0.0" width="79.333333333333314" height="92.333333333333329"/>
                                                 <state key="normal" title="/"/>
                                                 <connections>
                                                     <action selector="divideButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-divide"/>
@@ -59,31 +77,31 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="row-two">
-                                        <rect key="frame" x="0.0" y="114.33333333333331" width="353" height="102"/>
+                                        <rect key="frame" x="0.0" y="104.33333333333331" width="353" height="92.333333333333314"/>
                                         <subviews>
                                             <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-seven">
-                                                <rect key="frame" x="0.0" y="0.0" width="79.333333333333329" height="102"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="79.333333333333329" height="92.333333333333329"/>
                                                 <state key="normal" title="7"/>
                                                 <connections>
                                                     <action selector="sevenButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-seven"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-eight">
-                                                <rect key="frame" x="91.333333333333343" y="0.0" width="79.333333333333343" height="102"/>
+                                                <rect key="frame" x="91.333333333333343" y="0.0" width="79.333333333333343" height="92.333333333333329"/>
                                                 <state key="normal" title="8"/>
                                                 <connections>
                                                     <action selector="eightButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-eight"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-nine">
-                                                <rect key="frame" x="182.66666666666666" y="0.0" width="78.999999999999972" height="102"/>
+                                                <rect key="frame" x="182.66666666666666" y="0.0" width="78.999999999999972" height="92.333333333333329"/>
                                                 <state key="normal" title="9"/>
                                                 <connections>
                                                     <action selector="nineButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-nine"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-multiply">
-                                                <rect key="frame" x="273.66666666666669" y="0.0" width="79.333333333333314" height="102"/>
+                                                <rect key="frame" x="273.66666666666669" y="0.0" width="79.333333333333314" height="92.333333333333329"/>
                                                 <state key="normal" title="x"/>
                                                 <connections>
                                                     <action selector="multiplyButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-multiply"/>
@@ -92,31 +110,31 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="row-three">
-                                        <rect key="frame" x="0.0" y="228.33333333333334" width="353" height="102.33333333333334"/>
+                                        <rect key="frame" x="0.0" y="208.66666666666669" width="353" height="92.666666666666686"/>
                                         <subviews>
                                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-four">
-                                                <rect key="frame" x="0.0" y="0.0" width="79.333333333333329" height="102.33333333333333"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="79.333333333333329" height="92.666666666666671"/>
                                                 <state key="normal" title="4"/>
                                                 <connections>
                                                     <action selector="fourButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-four"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-five">
-                                                <rect key="frame" x="91.333333333333343" y="0.0" width="79.333333333333343" height="102.33333333333333"/>
+                                                <rect key="frame" x="91.333333333333343" y="0.0" width="79.333333333333343" height="92.666666666666671"/>
                                                 <state key="normal" title="5"/>
                                                 <connections>
                                                     <action selector="fiveButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-five"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-six">
-                                                <rect key="frame" x="182.66666666666666" y="0.0" width="78.999999999999972" height="102.33333333333333"/>
+                                                <rect key="frame" x="182.66666666666666" y="0.0" width="78.999999999999972" height="92.666666666666671"/>
                                                 <state key="normal" title="6"/>
                                                 <connections>
                                                     <action selector="sixButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-six"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-subtract">
-                                                <rect key="frame" x="273.66666666666669" y="0.0" width="79.333333333333314" height="102.33333333333333"/>
+                                                <rect key="frame" x="273.66666666666669" y="0.0" width="79.333333333333314" height="92.666666666666671"/>
                                                 <state key="normal" title="-"/>
                                                 <connections>
                                                     <action selector="subtractButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-subtract"/>
@@ -125,31 +143,31 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="row-four">
-                                        <rect key="frame" x="0.0" y="342.66666666666663" width="353" height="102"/>
+                                        <rect key="frame" x="0.0" y="313.33333333333337" width="353" height="92.333333333333314"/>
                                         <subviews>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-one">
-                                                <rect key="frame" x="0.0" y="0.0" width="79.333333333333329" height="102"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="79.333333333333329" height="92.333333333333329"/>
                                                 <state key="normal" title="1"/>
                                                 <connections>
                                                     <action selector="oneButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-one"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-two">
-                                                <rect key="frame" x="91.333333333333343" y="0.0" width="79.333333333333343" height="102"/>
+                                                <rect key="frame" x="91.333333333333343" y="0.0" width="79.333333333333343" height="92.333333333333329"/>
                                                 <state key="normal" title="2"/>
                                                 <connections>
                                                     <action selector="twoButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-two"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-three">
-                                                <rect key="frame" x="182.66666666666666" y="0.0" width="78.999999999999972" height="102"/>
+                                                <rect key="frame" x="182.66666666666666" y="0.0" width="78.999999999999972" height="92.333333333333329"/>
                                                 <state key="normal" title="3"/>
                                                 <connections>
                                                     <action selector="threeButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-three"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-add">
-                                                <rect key="frame" x="273.66666666666669" y="0.0" width="79.333333333333314" height="102"/>
+                                                <rect key="frame" x="273.66666666666669" y="0.0" width="79.333333333333314" height="92.333333333333329"/>
                                                 <state key="normal" title="+"/>
                                                 <connections>
                                                     <action selector="addButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-add"/>
@@ -158,31 +176,31 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="row-five">
-                                        <rect key="frame" x="0.0" y="456.66666666666663" width="353" height="102.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="417.66666666666663" width="353" height="92.333333333333314"/>
                                         <subviews>
                                             <button opaque="NO" tag="301" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-zero">
-                                                <rect key="frame" x="0.0" y="0.0" width="79.333333333333329" height="102.33333333333333"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="79.333333333333329" height="92.333333333333329"/>
                                                 <state key="normal" title="+/-"/>
                                                 <connections>
                                                     <action selector="signButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-bottom-sign"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-decimal">
-                                                <rect key="frame" x="91.333333333333343" y="0.0" width="79.333333333333343" height="102.33333333333333"/>
+                                                <rect key="frame" x="91.333333333333343" y="0.0" width="79.333333333333343" height="92.333333333333329"/>
                                                 <state key="normal" title="0"/>
                                                 <connections>
                                                     <action selector="zeroButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-bottom-zero"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="303" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-equals">
-                                                <rect key="frame" x="182.66666666666666" y="0.0" width="78.999999999999972" height="102.33333333333333"/>
+                                                <rect key="frame" x="182.66666666666666" y="0.0" width="78.999999999999972" height="92.333333333333329"/>
                                                 <state key="normal" title="."/>
                                                 <connections>
                                                     <action selector="decimalButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-bottom-decimal"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="200" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-delete">
-                                                <rect key="frame" x="273.66666666666669" y="0.0" width="79.333333333333314" height="102.33333333333333"/>
+                                                <rect key="frame" x="273.66666666666669" y="0.0" width="79.333333333333314" height="92.333333333333329"/>
                                                 <state key="normal" title="="/>
                                                 <connections>
                                                     <action selector="equalsButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-bottom-equals"/>
@@ -206,6 +224,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="button-stack" secondAttribute="trailing" constant="20" id="stack-trailing"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Calculator" id="tab-item-calculator"/>
                     <connections>
                         <outlet property="addButton" destination="button-add" id="outlet-add"/>
                         <outlet property="clearButton" destination="button-sign" id="outlet-clear"/>
@@ -234,8 +253,69 @@
             </objects>
             <point key="canvasLocation" x="46.564885496183201" y="-2.1126760563380285"/>
         </scene>
+        <!--Users Table View Controller-->
+        <scene sceneID="users-scene">
+            <objects>
+                <tableViewController id="users-table-vc" customClass="UsersTableViewController" customModule="MyFirstApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Users" id="tab-item-users"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" id="users-table">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="PreviewUserCell" rowHeight="72" id="preview-user-cell">
+                                <rect key="frame" x="0.0" y="50" width="393" height="72"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="preview-user-cell" id="preview-user-cell-content">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="72"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="PersonA" translatesAutoresizingMaskIntoConstraints="NO" id="preview-user-image">
+                                            <rect key="frame" x="16" y="10" width="52" height="52"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="52" id="preview-image-width"/>
+                                                <constraint firstAttribute="height" constant="52" id="preview-image-height"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name: Person A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="preview-name-label">
+                                            <rect key="frame" x="80" y="15" width="297" height="20"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age: 21 - iOS trainee" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="preview-details-label">
+                                            <rect key="frame" x="80" y="39" width="297" height="18"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="preview-user-image" firstAttribute="leading" secondItem="preview-user-cell-content" secondAttribute="leading" constant="16" id="preview-image-leading"/>
+                                        <constraint firstItem="preview-user-image" firstAttribute="centerY" secondItem="preview-user-cell-content" secondAttribute="centerY" id="preview-image-center-y"/>
+                                        <constraint firstItem="preview-name-label" firstAttribute="leading" secondItem="preview-user-image" secondAttribute="trailing" constant="12" id="preview-name-leading"/>
+                                        <constraint firstItem="preview-name-label" firstAttribute="top" secondItem="preview-user-cell-content" secondAttribute="top" constant="15" id="preview-name-top"/>
+                                        <constraint firstItem="preview-user-cell-content" firstAttribute="trailing" secondItem="preview-name-label" secondAttribute="trailing" constant="16" id="preview-name-trailing"/>
+                                        <constraint firstItem="preview-details-label" firstAttribute="leading" secondItem="preview-name-label" secondAttribute="leading" id="preview-details-leading"/>
+                                        <constraint firstItem="preview-details-label" firstAttribute="top" secondItem="preview-name-label" secondAttribute="bottom" constant="4" id="preview-details-top"/>
+                                        <constraint firstItem="preview-details-label" firstAttribute="trailing" secondItem="preview-name-label" secondAttribute="trailing" id="preview-details-trailing"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="users-table-vc" id="users-data-source"/>
+                            <outlet property="delegate" destination="users-table-vc" id="users-delegate"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="users-first-responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="937" y="-2"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="PersonA" width="240" height="240"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

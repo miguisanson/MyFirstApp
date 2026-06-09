@@ -7,9 +7,9 @@
 
 class UserViewModel {
     private var users: [User] = [
-        User(name: "Miguel", age: 21, details: "iOS trainee", imageName: "person.circle"),
-        User(name: "Ana", age: 22, details: "Loves UIKit", imageName: "star.circle"),
-        User(name: "Ben", age: 23, details: "Practicing tables", imageName: "book.circle")
+        User(name: "Person A", age: 21, details: "iOS trainee", imageName: "PersonA"),
+        User(name: "Person B", age: 22, details: "Loves UIKit", imageName: "PersonB"),
+        User(name: "Person C", age: 23, details: "Practicing tables", imageName: "PersonC")
     ]
 
     var numberOfUsers: Int {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController {
 
     // This label shows the calculator number.
     @IBOutlet weak var displayLabel: UILabel!
@@ -39,137 +39,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var mathSign = ""
     var isTypingNumber = false
 
-    let userViewModel = UserViewModel()
-    let tableView = UITableView()
-    let userCellName = "UserCell"
-
-    override func loadView() {
-        view = UIView()
-        setupLayout()
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupScreen()
         clearCalculator()
-    }
-
-    func setupLayout() {
-        view.backgroundColor = .white
-
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(scrollView)
-
-        let mainStack = UIStackView()
-        mainStack.axis = .vertical
-        mainStack.spacing = 12
-        mainStack.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.addSubview(mainStack)
-
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-
-            mainStack.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: 16),
-            mainStack.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor, constant: 16),
-            mainStack.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor, constant: -16),
-            mainStack.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: -16),
-            mainStack.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor, constant: -32)
-        ])
-
-        let displayLabel = UILabel()
-        displayLabel.textAlignment = .right
-        mainStack.addArrangedSubview(displayLabel)
-        displayLabel.heightAnchor.constraint(equalToConstant: 64).isActive = true
-        self.displayLabel = displayLabel
-
-        let buttonStack = UIStackView()
-        buttonStack.axis = .vertical
-        buttonStack.distribution = .fillEqually
-        buttonStack.spacing = 8
-        mainStack.addArrangedSubview(buttonStack)
-
-        let buttonHeight = buttonStack.heightAnchor.constraint(equalTo: mainStack.widthAnchor, multiplier: 0.9)
-        buttonHeight.priority = .defaultHigh
-        buttonHeight.isActive = true
-        buttonStack.heightAnchor.constraint(lessThanOrEqualToConstant: 330).isActive = true
-
-        let deleteButton = makeButton(title: "DEL", action: #selector(deleteButtonTapped(_:)))
-        let clearButton = makeButton(title: "AC", action: #selector(clearButtonTapped(_:)))
-        let percentButton = makeButton(title: "%", action: #selector(percentButtonTapped(_:)))
-        let divideButton = makeButton(title: "/", action: #selector(divideButtonTapped(_:)))
-        let sevenButton = makeButton(title: "7", action: #selector(sevenButtonTapped(_:)))
-        let eightButton = makeButton(title: "8", action: #selector(eightButtonTapped(_:)))
-        let nineButton = makeButton(title: "9", action: #selector(nineButtonTapped(_:)))
-        let multiplyButton = makeButton(title: "x", action: #selector(multiplyButtonTapped(_:)))
-        let fourButton = makeButton(title: "4", action: #selector(fourButtonTapped(_:)))
-        let fiveButton = makeButton(title: "5", action: #selector(fiveButtonTapped(_:)))
-        let sixButton = makeButton(title: "6", action: #selector(sixButtonTapped(_:)))
-        let subtractButton = makeButton(title: "-", action: #selector(subtractButtonTapped(_:)))
-        let oneButton = makeButton(title: "1", action: #selector(oneButtonTapped(_:)))
-        let twoButton = makeButton(title: "2", action: #selector(twoButtonTapped(_:)))
-        let threeButton = makeButton(title: "3", action: #selector(threeButtonTapped(_:)))
-        let addButton = makeButton(title: "+", action: #selector(addButtonTapped(_:)))
-        let signButton = makeButton(title: "+/-", action: #selector(signButtonTapped(_:)))
-        let zeroButton = makeButton(title: "0", action: #selector(zeroButtonTapped(_:)))
-        let decimalButton = makeButton(title: ".", action: #selector(decimalButtonTapped(_:)))
-        let equalsButton = makeButton(title: "=", action: #selector(equalsButtonTapped(_:)))
-
-        self.deleteButton = deleteButton
-        self.clearButton = clearButton
-        self.percentButton = percentButton
-        self.divideButton = divideButton
-        self.sevenButton = sevenButton
-        self.eightButton = eightButton
-        self.nineButton = nineButton
-        self.multiplyButton = multiplyButton
-        self.fourButton = fourButton
-        self.fiveButton = fiveButton
-        self.sixButton = sixButton
-        self.subtractButton = subtractButton
-        self.oneButton = oneButton
-        self.twoButton = twoButton
-        self.threeButton = threeButton
-        self.addButton = addButton
-        self.signButton = signButton
-        self.zeroButton = zeroButton
-        self.decimalButton = decimalButton
-        self.equalsButton = equalsButton
-
-        buttonStack.addArrangedSubview(makeRow([deleteButton, clearButton, percentButton, divideButton]))
-        buttonStack.addArrangedSubview(makeRow([sevenButton, eightButton, nineButton, multiplyButton]))
-        buttonStack.addArrangedSubview(makeRow([fourButton, fiveButton, sixButton, subtractButton]))
-        buttonStack.addArrangedSubview(makeRow([oneButton, twoButton, threeButton, addButton]))
-        buttonStack.addArrangedSubview(makeRow([signButton, zeroButton, decimalButton, equalsButton]))
-
-        let tableTitleLabel = UILabel()
-        tableTitleLabel.text = "Users"
-        tableTitleLabel.font = .boldSystemFont(ofSize: 20)
-        mainStack.addArrangedSubview(tableTitleLabel)
-
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.rowHeight = 64
-        mainStack.addArrangedSubview(tableView)
-        tableView.heightAnchor.constraint(equalToConstant: 220).isActive = true
-    }
-
-    func makeButton(title: String, action: Selector) -> UIButton {
-        let button = UIButton(type: .system)
-        button.setTitle(title, for: .normal)
-        button.addTarget(self, action: action, for: .touchUpInside)
-        return button
-    }
-
-    func makeRow(_ buttons: [UIButton]) -> UIStackView {
-        let rowStack = UIStackView(arrangedSubviews: buttons)
-        rowStack.axis = .horizontal
-        rowStack.distribution = .fillEqually
-        rowStack.spacing = 8
-        return rowStack
     }
 
     // Each IBAction is connected to one calculator button.
@@ -341,23 +214,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userViewModel.numberOfUsers
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: userCellName) ??
-            UITableViewCell(style: .subtitle, reuseIdentifier: userCellName)
-
-        cell.textLabel?.text = userViewModel.displayName(row: indexPath.row)
-        cell.detailTextLabel?.text = userViewModel.displayDetails(row: indexPath.row)
-        cell.imageView?.image = UIImage(systemName: userViewModel.imageName(row: indexPath.row))
-        cell.imageView?.tintColor = .black
-        cell.selectionStyle = .none
-
-        return cell
-    }
-
     func setupScreen() {
         view.backgroundColor = .white
 
@@ -389,10 +245,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         styleButton(zeroButton)
         styleButton(decimalButton)
         styleButton(equalsButton)
-
-        tableView.backgroundColor = .white
-        tableView.layer.borderWidth = 1
-        tableView.layer.borderColor = UIColor.black.cgColor
     }
 
     func styleButton(_ button: UIButton) {
@@ -403,4 +255,90 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         button.titleLabel?.font = .systemFont(ofSize: 24)
     }
 
+}
+
+class UsersTableViewController: UITableViewController {
+
+    let userViewModel = UserViewModel()
+    let userCellName = "UserCell"
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.backgroundColor = .white
+        tableView.rowHeight = 72
+        tableView.register(UserCell.self, forCellReuseIdentifier: userCellName)
+    }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return userViewModel.numberOfUsers
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: userCellName, for: indexPath) as! UserCell
+
+        cell.showUser(
+            name: userViewModel.displayName(row: indexPath.row),
+            details: userViewModel.displayDetails(row: indexPath.row),
+            imageName: userViewModel.imageName(row: indexPath.row)
+        )
+        cell.selectionStyle = .none
+
+        return cell
+    }
+}
+
+class UserCell: UITableViewCell {
+
+    let personImageView = UIImageView()
+    let nameLabel = UILabel()
+    let detailsLabel = UILabel()
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupCell()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupCell()
+    }
+
+    func setupCell() {
+        personImageView.translatesAutoresizingMaskIntoConstraints = false
+        personImageView.contentMode = .scaleAspectFill
+        personImageView.clipsToBounds = true
+        personImageView.layer.cornerRadius = 8
+
+        nameLabel.font = .boldSystemFont(ofSize: 16)
+        detailsLabel.font = .systemFont(ofSize: 14)
+        detailsLabel.textColor = .darkGray
+
+        let labelStack = UIStackView(arrangedSubviews: [nameLabel, detailsLabel])
+        labelStack.axis = .vertical
+        labelStack.spacing = 4
+
+        let rowStack = UIStackView(arrangedSubviews: [personImageView, labelStack])
+        rowStack.axis = .horizontal
+        rowStack.spacing = 12
+        rowStack.alignment = .center
+        rowStack.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(rowStack)
+
+        NSLayoutConstraint.activate([
+            personImageView.widthAnchor.constraint(equalToConstant: 52),
+            personImageView.heightAnchor.constraint(equalToConstant: 52),
+
+            rowStack.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            rowStack.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            rowStack.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            rowStack.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+        ])
+    }
+
+    func showUser(name: String, details: String, imageName: String) {
+        nameLabel.text = name
+        detailsLabel.text = details
+        personImageView.image = UIImage(named: imageName)
+    }
 }
