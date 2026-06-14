@@ -12,6 +12,16 @@ class ViewController: UIViewController {
     // This label shows the calculator number.
     @IBOutlet weak var displayLabel: UILabel!
 
+    // UIKit uses UIStackView. This one works like a VStack for all button rows.
+    @IBOutlet weak var calculatorVStack: UIStackView!
+
+    // These UIStackViews work like HStacks for each row of calculator buttons.
+    @IBOutlet weak var firstButtonHStack: UIStackView!
+    @IBOutlet weak var secondButtonHStack: UIStackView!
+    @IBOutlet weak var thirdButtonHStack: UIStackView!
+    @IBOutlet weak var fourthButtonHStack: UIStackView!
+    @IBOutlet weak var fifthButtonHStack: UIStackView!
+
     // These variables keep references to each calculator button.
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var clearButton: UIButton!
@@ -41,8 +51,23 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupStackViews()
         setupScreen()
         clearCalculator()
+    }
+
+    func setupStackViews() {
+        // VStack: puts the calculator rows from top to bottom.
+        calculatorVStack.axis = .vertical
+        calculatorVStack.distribution = .fillEqually
+        calculatorVStack.spacing = 12
+
+        // HStacks: put the buttons in each row from left to right.
+        firstButtonHStack.axis = .horizontal
+        secondButtonHStack.axis = .horizontal
+        thirdButtonHStack.axis = .horizontal
+        fourthButtonHStack.axis = .horizontal
+        fifthButtonHStack.axis = .horizontal
     }
 
     // Each IBAction is connected to one calculator button.

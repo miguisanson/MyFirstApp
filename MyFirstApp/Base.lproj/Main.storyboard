@@ -61,7 +61,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="302" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-percent">
-                                                <rect key="frame" x="182.66666666666666" y="0.0" width="78.999999999999972" height="92.333333333333329"/>
+                                                <rect key="frame" x="182.66666666666663" y="0.0" width="79" height="92.333333333333329"/>
                                                 <state key="normal" title="%"/>
                                                 <connections>
                                                     <action selector="percentButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-percent"/>
@@ -94,7 +94,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="9" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-nine">
-                                                <rect key="frame" x="182.66666666666666" y="0.0" width="78.999999999999972" height="92.333333333333329"/>
+                                                <rect key="frame" x="182.66666666666663" y="0.0" width="79" height="92.333333333333329"/>
                                                 <state key="normal" title="9"/>
                                                 <connections>
                                                     <action selector="nineButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-nine"/>
@@ -127,7 +127,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-six">
-                                                <rect key="frame" x="182.66666666666666" y="0.0" width="78.999999999999972" height="92.666666666666671"/>
+                                                <rect key="frame" x="182.66666666666663" y="0.0" width="79" height="92.666666666666671"/>
                                                 <state key="normal" title="6"/>
                                                 <connections>
                                                     <action selector="sixButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-six"/>
@@ -160,7 +160,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-three">
-                                                <rect key="frame" x="182.66666666666666" y="0.0" width="78.999999999999972" height="92.333333333333329"/>
+                                                <rect key="frame" x="182.66666666666663" y="0.0" width="79" height="92.333333333333329"/>
                                                 <state key="normal" title="3"/>
                                                 <connections>
                                                     <action selector="threeButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-three"/>
@@ -193,7 +193,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" tag="303" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-equals">
-                                                <rect key="frame" x="182.66666666666666" y="0.0" width="78.999999999999972" height="92.333333333333329"/>
+                                                <rect key="frame" x="182.66666666666663" y="0.0" width="79" height="92.333333333333329"/>
                                                 <state key="normal" title="."/>
                                                 <connections>
                                                     <action selector="decimalButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="action-bottom-decimal"/>
@@ -227,6 +227,7 @@
                     <tabBarItem key="tabBarItem" title="Calculator" id="tab-item-calculator"/>
                     <connections>
                         <outlet property="addButton" destination="button-add" id="outlet-add"/>
+                        <outlet property="calculatorVStack" destination="button-stack" id="outlet-calculator-vstack"/>
                         <outlet property="clearButton" destination="button-sign" id="outlet-clear"/>
                         <outlet property="decimalButton" destination="button-equals" id="outlet-decimal"/>
                         <outlet property="deleteButton" destination="button-clear" id="outlet-delete"/>
@@ -234,16 +235,21 @@
                         <outlet property="divideButton" destination="button-divide" id="outlet-divide"/>
                         <outlet property="eightButton" destination="button-eight" id="outlet-eight"/>
                         <outlet property="equalsButton" destination="button-delete" id="outlet-equals"/>
+                        <outlet property="fifthButtonHStack" destination="row-five" id="outlet-fifth-hstack"/>
+                        <outlet property="firstButtonHStack" destination="row-one" id="outlet-first-hstack"/>
                         <outlet property="fiveButton" destination="button-five" id="outlet-five"/>
                         <outlet property="fourButton" destination="button-four" id="outlet-four"/>
+                        <outlet property="fourthButtonHStack" destination="row-four" id="outlet-fourth-hstack"/>
                         <outlet property="multiplyButton" destination="button-multiply" id="outlet-multiply"/>
                         <outlet property="nineButton" destination="button-nine" id="outlet-nine"/>
                         <outlet property="oneButton" destination="button-one" id="outlet-one"/>
                         <outlet property="percentButton" destination="button-percent" id="outlet-percent"/>
+                        <outlet property="secondButtonHStack" destination="row-two" id="outlet-second-hstack"/>
                         <outlet property="sevenButton" destination="button-seven" id="outlet-seven"/>
                         <outlet property="signButton" destination="button-zero" id="outlet-sign"/>
                         <outlet property="sixButton" destination="button-six" id="outlet-six"/>
                         <outlet property="subtractButton" destination="button-subtract" id="outlet-subtract"/>
+                        <outlet property="thirdButtonHStack" destination="row-three" id="outlet-third-hstack"/>
                         <outlet property="threeButton" destination="button-three" id="outlet-three"/>
                         <outlet property="twoButton" destination="button-two" id="outlet-two"/>
                         <outlet property="zeroButton" destination="button-decimal" id="outlet-zero"/>
@@ -253,11 +259,10 @@
             </objects>
             <point key="canvasLocation" x="46.564885496183201" y="-2.1126760563380285"/>
         </scene>
-        <!--Users Table View Controller-->
+        <!--Users-->
         <scene sceneID="users-scene">
             <objects>
                 <tableViewController id="users-table-vc" customClass="UsersTableViewController" customModule="MyFirstApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Users" id="tab-item-users"/>
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" id="users-table">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -273,8 +278,8 @@
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="PersonA" translatesAutoresizingMaskIntoConstraints="NO" id="preview-user-image">
                                             <rect key="frame" x="16" y="10" width="52" height="52"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="52" id="preview-image-width"/>
                                                 <constraint firstAttribute="height" constant="52" id="preview-image-height"/>
+                                                <constraint firstAttribute="width" constant="52" id="preview-image-width"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name: Person A" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="preview-name-label">
@@ -284,21 +289,21 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Age: 21 - iOS trainee" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" translatesAutoresizingMaskIntoConstraints="NO" id="preview-details-label">
-                                            <rect key="frame" x="80" y="39" width="297" height="18"/>
+                                            <rect key="frame" x="80" y="39" width="297" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="preview-user-image" firstAttribute="leading" secondItem="preview-user-cell-content" secondAttribute="leading" constant="16" id="preview-image-leading"/>
-                                        <constraint firstItem="preview-user-image" firstAttribute="centerY" secondItem="preview-user-cell-content" secondAttribute="centerY" id="preview-image-center-y"/>
-                                        <constraint firstItem="preview-name-label" firstAttribute="leading" secondItem="preview-user-image" secondAttribute="trailing" constant="12" id="preview-name-leading"/>
-                                        <constraint firstItem="preview-name-label" firstAttribute="top" secondItem="preview-user-cell-content" secondAttribute="top" constant="15" id="preview-name-top"/>
-                                        <constraint firstItem="preview-user-cell-content" firstAttribute="trailing" secondItem="preview-name-label" secondAttribute="trailing" constant="16" id="preview-name-trailing"/>
                                         <constraint firstItem="preview-details-label" firstAttribute="leading" secondItem="preview-name-label" secondAttribute="leading" id="preview-details-leading"/>
                                         <constraint firstItem="preview-details-label" firstAttribute="top" secondItem="preview-name-label" secondAttribute="bottom" constant="4" id="preview-details-top"/>
                                         <constraint firstItem="preview-details-label" firstAttribute="trailing" secondItem="preview-name-label" secondAttribute="trailing" id="preview-details-trailing"/>
+                                        <constraint firstItem="preview-user-image" firstAttribute="centerY" secondItem="preview-user-cell-content" secondAttribute="centerY" id="preview-image-center-y"/>
+                                        <constraint firstItem="preview-user-image" firstAttribute="leading" secondItem="preview-user-cell-content" secondAttribute="leading" constant="16" id="preview-image-leading"/>
+                                        <constraint firstItem="preview-name-label" firstAttribute="leading" secondItem="preview-user-image" secondAttribute="trailing" constant="12" id="preview-name-leading"/>
+                                        <constraint firstItem="preview-name-label" firstAttribute="top" secondItem="preview-user-cell-content" secondAttribute="top" constant="15" id="preview-name-top"/>
+                                        <constraint firstAttribute="trailing" secondItem="preview-name-label" secondAttribute="trailing" constant="16" id="preview-name-trailing"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -308,6 +313,7 @@
                             <outlet property="delegate" destination="users-table-vc" id="users-delegate"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Users" id="tab-item-users"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="users-first-responder" sceneMemberID="firstResponder"/>
             </objects>
